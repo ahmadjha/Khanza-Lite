@@ -1,78 +1,175 @@
-<article class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Kelola</h3>
-                <ul class="nav nav-tabs">
-                    <li class="{if: $tab == 'active'}active{/if}">
-                        <a href="{?=url(ADMIN.'/modules/manage/active')?}" role="tab">Aktif</a>
+
+
+<!----------------------------
+Content Area
+----------------------------->
+<div id="content" class="pmd-content content-area">
+    <!-- Page Title for Responsive View -->
+    <div class="d-flex align-items-center">
+        <div class="">
+            <!-- Page Title -->
+            <h1 class="h2 hide-large-desk">Patients</h1>
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb pmd-breadcrumb ">
+                    <li class="breadcrumb-item">
+                        <a href="dashboard.html">Dashboard</a>
                     </li>
-                    <li class="{if: $tab == 'inactive'}active{/if}">
-                        <a href="{?=url(ADMIN.'/modules/manage/inactive')?}" role="tab">Tidak Aktif</a>
-                    </li>
-				</ul>
-            </div>
-            <div class="panel-body">
-                {if: !empty($modules)}
-				<div class="table-responsive no-margin">
-					<table class="table table-striped no-margin">
-						<thead>
-							<tr>
-								<th colspan="2">Module</th>
-								<th>Versi</th>
-                                <th>Status</th>
-								<th class="text-right">Aksi</th>
-							</tr>
-						</thead>
-						<tbody>
-							{loop: $modules}
-                                {loop: $value}
-                                <tr>
-                                    <td class="text-center"><i class="fa fa-{$value.icon} fa-2x"></i></td>
-                                    <td>
-                                        <a href="{$value.detailsUrl}" data-toggle="modal" data-target="#moduleModal">
-                                            <strong>{$value.name}</strong>
-                                        </a>
-                                        <p>{$value.description|cut:54}</p>
-                                    </td>
-                                    <td>{$value.version}</td>
-                                    <td>
-                                        {if: !$value.compatible}
-                                            <span class="label label-danger">Lawas</span>
-                                        {else}
-                                            <span class="label label-primary">Sesuai</span>
-                                        {/if}
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="{$value.detailsUrl}" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#moduleModal">
-                                            <i class="fa fa-search"></i> <span class="hidden-xs">Detil</span>
-                                        </a>
-                                        {if: $value.installed}
-                                            <a href="{$value.uninstallUrl}" class="btn btn-danger btn-xs {if: $value.basic}disabled{/if}" data-confirm="Yakin ingin menonaktifkan modul ini?">
-                                                <i class="fa fa-times"></i> <span class="hidden-xs">Matikan</span>
-                                            </a>
-                                        {else}
-                                            <a href="{$value.installUrl}" class="btn btn-success btn-xs {if: !$value.compatible}disabled{/if}">
-                                                <i class="fa fa-check"></i> <span class="hidden-xs">Aktifkan</span>
-                                            </a>
-                                            <a href="{$value.removeUrl}" class="btn btn-danger btn-xs {if: $value.basic}disabled{/if}" data-confirm="Yakin ingin menghapus modul terpilih?">
-                                                <i class="fa fa-trash-o"></i> <span class="hidden-xs">Hapus</span>
-                                            </a>
-                                        {/if}
-                                    </td>
-                                </tr>
-                                {/loop}
-							{/loop}
-						</tbody>
-					</table>
-				</div>
-                {else}
-                <p class="no-margin">Tidak ada item untuk ditampilkan</p>
-                {/if}
-            </div>
+                    <li class="breadcrumb-item active" aria-current="page">Modules</li>
+                </ol>
+            </nav>
+            <!-- End Breadcrumb -->
+        </div>
+        <div class="ml-auto">
+            <ul class="nav nav-tabs border-0 mb-3">
+                <li class="nav-item mr-2">
+                    <a title="Aktif"
+                        class="btn btn-outline-dark pmd-btn-fab pmd-ripple-effect nav-link btn-sm {if: $tab == 'active'}active{/if}"
+                        href="{?=url(ADMIN.'/modules/manage/active')?}" role="tab">
+                        <i class="material-icons">visibility</i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a title="Tidak Aktif" class="btn btn-outline-dark pmd-btn-fab pmd-ripple-effect nav-link btn-sm {if: $tab == 'inactive'}active{/if}"
+                        href="{?=url(ADMIN.'/modules/manage/inactive')?}" role="tab"">
+                        <i class="material-icons">visibility_off</i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-</article>
+    <!-- End Breadcrumb -->
+
+    <!-- Data Table -->
+    <div class="card pmd-card pmd-data-table">
+        <table id="module-lists" class="table pmd-table table-hover dt-responsive nowrap"
+            cellspacing="0" width="100%">
+            <!-- Table Heading -->
+            <thead class="">
+                <tr>
+                    <th>Icon</th>
+                    <th>Module</th>
+                    <th>Versi</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {loop: $modules}
+                {loop: $value}
+                <tr>
+                    <td data-title="Icon"><i class="material-icons pmd-list-icon pmd-sm md-light" style="font-size:32px;color:#34316E;">{$value.icon}</i></td>
+                    <td data-title="Nama Modul">
+                        <a href="{$value.detailsUrl}" data-toggle="modal" data-target="#moduleModal">
+                            <strong>{$value.name}</strong>
+                        </a>
+                        <p>{$value.description|cut:54}</p>
+                    </td>
+                    <td data-title="Versi">{$value.version}</td>
+                    <td data-title="Status">
+                        {if: !$value.compatible}
+                            <span class="label label-danger">Lawas</span>
+                        {else}
+                            <span class="label label-primary">Sesuai</span>
+                        {/if}
+                    </td>
+                    <td data-title="Actions">
+                        <a href='{$value.detailsUrl}'
+                            class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2'
+                            data-target='#moduleModal' data-toggle='modal' title='View'>
+                            <i class='material-icons'>preview</i>
+                        </a>
+                        {if: $value.installed}
+                            <a href='{$value.uninstallUrl}'
+                                class='btn btn-danger pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm {if: $value.basic}disabled{/if}'
+                                data-confirm='Yakin ingin menonaktifkan modul ini?' title='Delete'>
+                                <i class='material-icons'>power_off</i>
+                            </a>
+                        {else}
+                            <a href='{$value.installUrl}'
+                                class='btn btn-danger pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm {if: !$value.compatible}disabled{/if}'>
+                                <i class='material-icons'>power</i>
+                            </a>
+                            <a href='{$value.removeUrl}'
+                                class='btn btn-danger pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm {if: $value.basic}disabled{/if}'
+                                data-confirm='Yakin ingin menghapus modul ini?' data-target='#delete_user_modal' data-toggle='modal' title='Delete'>
+                                <i class='material-icons'>delete_outline</i>
+                            </a>
+                        {/if}
+                    </td>
+                </tr>
+                {/loop}
+            {/loop}
+            </tbody>
+        </table>
+    </div>
+    <!-- End Data Table -->
+
+</div>
+<!-- End Content Area -->
+
+<!-- Add Department button -->
+<div class="menu list-view pmd-floating-action" role="navigation">
+    <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary text-white pmd-sidebar-toggle"
+        data-title="Add Module" href="javascript:void(0);" data-target="addSidebar" data-placement="right"
+        data-position='fixed'>
+        <i class="material-icons">add</i>
+    </a>
+</div>
+<!-- End Add Department button -->
+
+<!----------------------------
+Right Sidebar | Add Department
+----------------------------->
+<aside id="addSidebar" class="pmd-sidebar bg-white pmd-sidebar-right-fixed pmd-z-depth-light-2 add-sidebar"
+    role="rightSidebar">
+    <div class="card pmd-card">
+        <!-- Card Header -->
+        <div class="card-header pmd-card-border">
+            <h3 class="card-title d-flex justify-content-between">Add Module
+                <button class="close pmd-sidebar-toggle" data-target="addSidebar" data-position='fixed'
+                    data-placement="right" type="button">
+                    <i class="material-icons">close</i>
+                </button>
+            </h3>
+        </div>
+        <!-- Card Body | Form Fields -->
+        {if: FILE_LOCK}
+        <div class="alert alert-danger m-1">Pengunggahan berkas dimatikan. Anda harus mengunggah paket modul melalui FTP.<span class="label pull-right">FILE_LOCK</span></div>
+        {/if}
+        <div class="alert alert-primary m-1">Pastikan modul anda versi terbaru dan unggah berkas terkompresi modul dengan akhiran .zip.</div>
+        <div class="alert alert-danger m-1">Modul akan ditimpa apabila sudah ada.</div>
+
+        <form method="post" action="{?=url(ADMIN.'/modules/extract', true)?}" enctype="multipart/form-data" class="card-body">
+            <div class="form-group">
+                <div data-provides="fileinput" class="fileinput file-upload-140 rounded-circle profile-pic">
+                    <div data-trigger="fileinput" class="fileinput-preview thumbnail img-fluid mb-0">
+                        <i class='material-icons mt-3 display-1'>view_module</i>
+                    </div>
+                    <div class="action-button">
+                        <span
+                            class="btn btn-secondary pmd-btn-fab btn-xs pmd-btn-raised btn-file pmd-ripple-effect">
+                            <span class="fileinput-new"><i class="material-icons pmd-xs">add</i></span>
+                            <input type="file" class="form-control" name="zip_module" required />
+                        </span>
+                    </div>
+                </div>
+                <div class="alert alert-success">Pilih modul dengan akhiran .zip.</div>
+            </div>
+            <!-- Form Actions -->
+            <div class="pmd-modal-action mt-5">
+                <button type="submit" name="submit" data-target="addSidebar" data-position='fixed' data-placement="right"
+                    class="btn btn-block pmd-btn-raised d-block btn-primary pmd-ripple-effect mb-2 ml-0 pmd-sidebar-toggle"
+                    title="Add Department">Unggah Modul</button>
+                <a href="javascript:void(0);" data-target="addSidebar" data-position='fixed' data-placement="right"
+                    class="m-0 btn d-block btn-outline-secondary pmd-ripple-effect pmd-btn-flat pmd-sidebar-toggle"
+                    title="Cancel">Batal</a>
+            </div>
+        </form>
+    </div>
+</aside>
+<!-- End Right Sidebar | Add Department -->
 
 <!-- Modal -->
 <div class="modal fade" id="moduleModal" tabindex="-1" role="dialog">

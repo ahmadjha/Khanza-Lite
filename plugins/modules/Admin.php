@@ -9,8 +9,7 @@ class Admin extends AdminModule
     public function navigation()
     {
         return [
-          'Kelola'    => 'manage',
-            'Upload'           => 'upload'
+          'Kelola'    => 'manage'
         ];
     }
 
@@ -24,20 +23,12 @@ class Admin extends AdminModule
     }
 
     /**
-    * module upload
-    */
-    public function getUpload()
-    {
-        return $this->draw('upload.html');
-    }
-
-    /**
      * module extract
      */
     public function postExtract()
     {
         if (isset($_FILES['zip_module']['tmp_name']) && !FILE_LOCK) {
-            $backURL = url([ADMIN, 'modules', 'upload']);
+            $backURL = url([ADMIN, 'modules', 'manage', 'inactive']);
             $file = $_FILES['zip_module']['tmp_name'];
 
             // Verify ZIP
