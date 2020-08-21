@@ -20,17 +20,18 @@ class Admin extends AdminModule
     */
     public function getManage()
     {
-        //$this->_addHeaderFiles();
-        $this->core->addCSS(url(MODULES.'/users/css/admin/app.css'));
+        $this->_addHeaderFiles();
 
         $rows = $this->db()->pdo()->prepare("SELECT lite_roles.*, pegawai.nama as nama, AES_DECRYPT(user.password,'windi') as password FROM lite_roles, pegawai, user WHERE pegawai.nik = lite_roles.username AND pegawai.nik = AES_DECRYPT(user.id_user,'nur') AND lite_roles.id !=1");
         $rows->execute();
         $rows = $rows->fetchAll();
 
+        $i = 1;
         foreach ($rows as &$row) {
             if (empty($row['nama'])) {
                 $row['nama'] = '----';
             }
+            $row['no'] = $i++;
             $row['editURL'] = url([ADMIN, 'users', 'edit', $row['id']]);
             $row['delURL']  = url([ADMIN, 'users', 'delete', $row['id']]);
         }
@@ -106,7 +107,7 @@ class Admin extends AdminModule
 
         // location to redirect
         if (!$id) {
-            $location = url([ADMIN, 'users', 'add']);
+            $location = url([ADMIN, 'users', 'manage']);
         } else {
             $location = url([ADMIN, 'users', 'edit', $id]);
         }
@@ -250,22 +251,21 @@ class Admin extends AdminModule
     public function getJavascript()
     {
         header('Content-type: text/javascript');
-        echo $this->draw(MODULES.'/users/js/admin/users.js');
+        echo $this->draw(MODULES.'/users/js/admin/app.js');
+        exit();
+    }
+
+    public function getCss()
+    {
+        header('Content-type: text/css');
+        echo $this->draw(MODULES.'/users/css/admin/app.css');
         exit();
     }
 
     private function _addHeaderFiles()
     {
-        // CSS
-        $this->core->addCSS(url('assets/css/jquery-ui.css'));
-        $this->core->addCSS(url('assets/css/dataTables.bootstrap.min.css'));
-
-        // JS
-        $this->core->addJS(url('assets/jscripts/jquery-ui.js'), 'footer');
-        $this->core->addJS(url('assets/jscripts/jquery.dataTables.min.js'), 'footer');
-        $this->core->addJS(url('assets/jscripts/dataTables.bootstrap.min.js'), 'footer');
-
         // MODULE SCRIPTS
+        $this->core->addCSS(url([ADMIN, 'users', 'css']));
         $this->core->addJS(url([ADMIN, 'users', 'javascript']), 'footer');
     }
 

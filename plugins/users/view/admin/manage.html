@@ -23,7 +23,6 @@ Content Area
             <!-- Table Heading -->
             <thead class="">
                 <tr>
-                    <th class="select-all"></th>
                     <th>No</th>
                     <th>Nama Lengkap</th>
                     <th>Nama Pengguna</th>
@@ -37,8 +36,7 @@ Content Area
             <tbody>
                 {loop: $users}
                 <tr>
-                    <td></td>
-                    <td data-title="No">1</td>
+                    <td data-title="No">{$value.no}</td>
                     <td data-title="Nama Lengkap">{$value.nama}</td>
                     <td data-title="Nama Pengguna">{$value.username}</td>
                     <td data-title="Kata Kunci">{$value.password}</td>
@@ -51,9 +49,9 @@ Content Area
                             data-target='#view_user_modal' data-toggle='modal' title='View'>
                             <i class='material-icons'>visibility</i>
                         </a>
-                        <a href='javascript:void(0);'
+                        <a href='#'
                             class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm'
-                            data-target='#delete_user_modal' data-toggle='modal' title='Delete'>
+                            data-userid="{$value.delURL}" data-target='#delete_user_modal' data-toggle='modal' title='Delete'>
                             <i class='material-icons'>delete_outline</i>
                         </a>
                     </td>
@@ -71,7 +69,7 @@ Content Area
 <!-- Add Department button -->
 <div class="menu list-view pmd-floating-action" role="navigation">
     <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary text-white pmd-sidebar-toggle"
-        data-title="Add Department" href="javascript:void(0);" data-target="addSidebar" data-placement="right"
+        data-title="Add User" href="javascript:void(0);" data-target="addSidebar" data-placement="right"
         data-position='fixed'>
         <i class="material-icons">add</i>
     </a>
@@ -86,7 +84,7 @@ Right Sidebar | Add Department
     <div class="card pmd-card">
         <!-- Card Header -->
         <div class="card-header pmd-card-border">
-            <h3 class="card-title d-flex justify-content-between">Add Department
+            <h3 class="card-title d-flex justify-content-between">Tambah User Baru
                 <button class="close pmd-sidebar-toggle" data-target="addSidebar" data-position='fixed'
                     data-placement="right" type="button">
                     <i class="material-icons">close</i>
@@ -94,7 +92,7 @@ Right Sidebar | Add Department
             </h3>
         </div>
         <!-- Card Body | Form Fields -->
-        <form name="user" action="{?=url(ADMIN.'/users/save/'.@$users.form.id)?}" method="POST" class="card-body">
+        <form name="user" action="{?=url(ADMIN.'/users/save/'.@$user_add.form.id)?}" method="POST" class="card-body">
             <!-- Text Input Field -->
             <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
                 <label for="department-name">Pengguna</label>
@@ -105,32 +103,37 @@ Right Sidebar | Add Department
                 </select>
                 <div class="invalid-feedback">Please Enter a Department Name. </div>
             </div>
-            <!-- Textarea Field -->
             <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
-                <label>Description</label>
-                <textarea class="form-control" id="description" name="description"></textarea>
+                <label>Role</label>
+                <select name="role" class="custom-select">
+                  {loop: $user_add.role}
+                    <option value="{$value}"{if: $value == $user_add.form.role} selected{/if}>{$value}</option>
+                  {/loop}
+                </select>
             </div>
-            <!-- Radio buttons -->
-            <div class="form-group">
-                <label class="title-label">Active</label>
-                <div class="custom-control custom-radio pmd-radio custom-control-inline">
-                    <input type="radio" id="addRadioActive" name="addStatus" class="custom-control-input" checked>
-                    <label class="custom-control-label pmd-radio-ripple-effect" for="addRadioActive">Yes</label>
-                </div>
-                <div class="custom-control custom-radio pmd-radio custom-control-inline">
-                    <input type="radio" id="addRadioInactive" name="addStatus" class="custom-control-input">
-                    <label class="custom-control-label pmd-radio-ripple-effect" for="addRadioInactive">No</label>
-                </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
+                <label>Capability</label>
+                <select name="cap" class="custom-select">
+                  {loop: $user_add.cap}
+                    <option value="{$value.cap}"{if: $value.cap == $user_add.form.cap} selected{/if}>{$value.nm_cap}</option>
+                  {/loop}
+                </select>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
+                <label>Akses</label>
+                <select name="access[]" multiple class="custom-select" data-keep-open="true" data-use-dimmer="false" data-options-height="126px" {if: isset_or($user_add.form.id, 0) == 1}disabled{/if} required>
+                    {loop: $user_add.modules}
+                    <option value="{$value.dir}" data-left="<i class='material-icons'>{$value.icon}</i>" {$value.attr}>{$value.name}</option>
+                    {/loop}
+                </select>
             </div>
             <!-- Form Actions -->
             <div class="pmd-modal-action">
-                <a href="javascript:void(0);" data-target="addSidebar" data-position='fixed' data-placement="right"
-                    class="btn pmd-btn-raised d-block btn-primary pmd-ripple-effect mb-2 ml-0 pmd-sidebar-toggle"
-                    title="Add Department">Add
-                    Department</a>
+                <button type="submit" name="save" class="btn btn-block pmd-btn-raised d-block btn-primary pmd-ripple-effect mb-2 ml-0 pmd-sidebar-toggle"
+                    title="Add User">Simpan</button>
                 <a href="javascript:void(0);" data-target="addSidebar" data-position='fixed' data-placement="right"
                     class="m-0 btn d-block btn-outline-secondary pmd-ripple-effect pmd-btn-flat pmd-sidebar-toggle"
-                    title="Cancel">Cancel</a>
+                    title="Cancel">Batal</a>
             </div>
         </form>
     </div>
@@ -210,8 +213,8 @@ Modal | Delete
                 <h3 class="modal-title mb-2">Are you sure?</h3>
                 <p class="mb-4">Do you really want to delete Appointment?<br>This action cannot be
                     undone.</p>
-                <a href="javascript:void(0);" class="btn pmd-btn-raised btn-danger pmd-ripple-effect mr-2"
-                    title="Delete" data-dismiss="modal">Delete</a>
+                <a href="" class="btn pmd-btn-raised btn-danger pmd-ripple-effect mr-2" id="userId"
+                    title="Delete">Delete</a>
                 <a href="javascript:void(0);" class="btn btn-outline-danger pmd-ripple-effect" title="Cancel"
                     data-dismiss="modal">Cancel</a>
             </div>

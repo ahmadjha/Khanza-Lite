@@ -52,6 +52,7 @@ Content Area
                     <th>Module</th>
                     <th>Versi</th>
                     <th>Status</th>
+                    <th></th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -69,11 +70,12 @@ Content Area
                     <td data-title="Versi">{$value.version}</td>
                     <td data-title="Status">
                         {if: !$value.compatible}
-                            <span class="label label-danger">Lawas</span>
+                            <span class="badge badge-pill pmd-badge-outline-secondary">Lawas</span>
                         {else}
-                            <span class="label label-primary">Sesuai</span>
+                            <span class="badge badge-pill pmd-badge-outline-success">Sesuai</span>
                         {/if}
                     </td>
+                    <td></td>
                     <td data-title="Actions">
                         <a href='{$value.detailsUrl}'
                             class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2'
@@ -91,9 +93,9 @@ Content Area
                                 class='btn btn-danger pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm {if: !$value.compatible}disabled{/if}'>
                                 <i class='material-icons'>power</i>
                             </a>
-                            <a href='{$value.removeUrl}'
+                            <a href='javascript:void(0);'
                                 class='btn btn-danger pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm {if: $value.basic}disabled{/if}'
-                                data-confirm='Yakin ingin menghapus modul ini?' data-target='#delete_user_modal' data-toggle='modal' title='Delete'>
+                                data-target='#delete_user_modal' data-toggle='modal' title='Delete'>
                                 <i class='material-icons'>delete_outline</i>
                             </a>
                         {/if}
@@ -173,9 +175,36 @@ Right Sidebar | Add Department
 
 <!-- Modal -->
 <div class="modal fade" id="moduleModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             ...
         </div>
     </div>
 </div>
+
+<!----------------------------
+Modal | Delete
+----------------------------->
+<div tabindex="-1" class="modal pmd-modal text-center delete-modal" id="delete_user_modal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header justify-content-center">
+                <i class="material-icons md-danger-circle pmd-icon-circle pmd-icon-md">
+                    <strong>error_outline</strong>
+                </i>
+            </div>
+            <!-- Modal Body Content -->
+            <div class="modal-body">
+                <h3 class="modal-title mb-2">Anda yakin?</h3>
+                <p class="mb-4">Yakin ingin menghapus modul ini?<br>Tindakan ini tidak bisa dibatalkan.</p>
+                <a href="{$value.removeUrl}" class="btn pmd-btn-raised btn-danger pmd-ripple-effect mr-2"
+                    title="Delete">Hapus</a>
+                <a href="javascript:void(0);" class="btn btn-outline-danger pmd-ripple-effect" title="Cancel"
+                    data-dismiss="modal">Batal</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal | Delete -->

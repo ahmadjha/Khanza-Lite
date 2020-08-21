@@ -1,8 +1,12 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title"><i class="fa fa-{$module.icon}"></i> {$module.name} {$module.version}</h4>
+<!-- Modal Header -->
+<div class="modal-header justify-content-center">
+    <i class="material-icons md-danger-circle pmd-icon-circle pmd-icon-md">
+        <strong>{$module.icon}</strong>
+    </i>
 </div>
+<!-- Modal Body Content -->
 <div class="modal-body">
+    <h3 class="modal-title mb-2">{$module.name} v.{$module.version}</h3>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -59,6 +63,7 @@
         {/if}
     </div>
 </div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
+<div class="modal-footer justify-content-center">
+    <a href="javascript:void(0);" class="btn btn-outline-danger pmd-ripple-effect" title="Cancel"
+        data-dismiss="modal">Tutup</a>
 </div>

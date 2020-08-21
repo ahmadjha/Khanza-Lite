@@ -18,6 +18,7 @@ class Admin extends AdminModule
     */
     public function getManage($type = 'active')
     {
+        $this->_addHeaderFiles();
         $modules = $this->_modulesList($type);
         return $this->draw('manage.html', ['modules' => array_chunk($modules, 2), 'tab' => $type]);
     }
@@ -237,4 +238,18 @@ class Admin extends AdminModule
         $version = str_replace(['.', '*'], ['\\.', '[0-9]+'], $version);
         return preg_match('/^'.$version.'[a-z]*$/', $systemVersion);
     }
+
+    public function getJavascript()
+    {
+        header('Content-type: text/javascript');
+        echo $this->draw(MODULES.'/modules/js/admin/app.js');
+        exit();
+    }
+
+    private function _addHeaderFiles()
+    {
+        // MODULE SCRIPTS
+        $this->core->addJS(url([ADMIN, 'modules', 'javascript']), 'footer');
+    }
+
 }
