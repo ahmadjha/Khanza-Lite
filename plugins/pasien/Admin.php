@@ -988,6 +988,120 @@ RR: '.$pemeriksaan_ralan['respirasi'].' /mnt';
         redirect(url([ADMIN, 'pasien', 'settings']));
     }
 
+    public function getDatatable()
+    {
+      header('Content-type: text/html');
+      // Alternative SQL join in Datatables
+      $id_table = 'no_rkm_medis';
+
+      $columns = array(
+                   'no_rkm_medis',
+                   'nm_pasien',
+                   'jk',
+                   'no_ktp',
+                   'alamat',
+                   'umur',
+                   'gol_darah',
+                   'png_jawab',
+                   'pekerjaan'
+                 );
+      $action = '"Test" as action';
+      // gunakan join disini
+      $from = 'pasien INNER JOIN penjab ON pasien.kd_pj = penjab.kd_pj';
+
+      $id_table = $id_table != '' ? $id_table . ',' : '';
+      // custom SQL
+      $sql = "SELECT {$id_table} ".implode(',', $columns)." FROM {$from}";
+
+      // search
+      if (isset($_GET['search']['value']) && $_GET['search']['value'] != '') {
+          $search = $_GET['search']['value'];
+          $where  = '';
+          // create parameter pencarian kesemua kolom yang tertulis
+          // di $columns
+          for ($i=0; $i < count($columns); $i++) {
+              $where .= $columns[$i] . ' LIKE "%'.$search.'%"';
+
+              // agar tidak menambahkan 'OR' diakhir Looping
+              if ($i < count($columns)-1) {
+                  $where .= ' OR ';
+              }
+          }
+
+          $sql .= ' WHERE ' . $where;
+      }
+
+      //SORT Kolom
+      $sortColumn = isset($_GET['order'][0]['column']) ? $_GET['order'][0]['column'] : 0;
+      $sortDir    = isset($_GET['order'][0]['dir']) ? $_GET['order'][0]['dir'] : 'asc';
+
+      $sortColumn = $columns[$sortColumn];
+
+      $sql .= " ORDER BY {$sortColumn} {$sortDir}";
+
+      $query = $this->db()->pdo()->prepare($sql);
+      $query->execute();
+      $query = $query->fetchAll();
+
+      // var_dump($sql);
+      //$count = $database->query($sql);
+      // hitung semua data
+      $totaldata = count($query);
+
+      // memberi Limit
+      $start  = isset($_GET['start']) ? $_GET['start'] : 0;
+      $length = isset($_GET['length']) ? $_GET['length'] : 10;
+
+
+      $sql .= " LIMIT {$start}, {$length}";
+
+      $data = $this->db()->pdo()->prepare($sql);
+      $data->execute();
+      $data = $data->fetchAll();
+
+      // create json format
+      $datatable['draw']            = isset($_GET['draw']) ? $_GET['draw'] : 1;
+      $datatable['recordsTotal']    = $totaldata;
+      $datatable['recordsFiltered'] = $totaldata;
+      $datatable['data']            = array();
+
+      foreach ($data as $row) {
+
+          $fields = array();
+          //for ($i=0; $i < count($columns); $i++) {
+              # code...
+          //    $fields[] = $row["{$columns[$i]}"];
+          //}
+          $fields['0'] = $row['no_rkm_medis'];
+          $fields['1'] = "<div class='d-flex align-items-center'>
+              <img src='".url(MODULES.'/pasien/img/'.$row['jk'].'.png')."' alt='".$row['nm_pasien']."'
+                  class='rounded-circle mr-3' width='40' height='40'>
+              <div class='media-body'>".$row['nm_pasien']."</div>
+          </div>";
+          $fields['2'] = $row['no_ktp'];
+          $fields['3'] = $row['alamat'];
+          $fields['4'] = $row['umur'];
+          $fields['5'] = $row['gol_darah'];
+          $fields['6'] = $row['png_jawab'];
+          $fields['7'] = $row['pekerjaan'];
+          $fields['8'] = '';
+          $fields['9'] = "<a href='".url([ADMIN, 'pasien', 'view', $row['no_rkm_medis']])."'
+              class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2'
+              title='View Profile'>
+              <i class='material-icons'>visibility</i>
+          </a>
+          <a href='javascript:void(0);'
+              class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm'
+              data-pasienid='".url([ADMIN, 'pasien', 'delete', $row['no_rkm_medis']])."' data-target='#delete_patient_modal' data-toggle='modal' title='Delete'>
+              <i class='material-icons'>delete_outline</i>
+          </a>";
+          $datatable['data'][] = $fields;
+      }
+
+      echo json_encode($datatable);
+      exit();
+    }
+
     public function getAjax()
     {
         header('Content-type: text/html');

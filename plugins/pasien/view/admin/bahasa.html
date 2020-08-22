@@ -1,0 +1,33 @@
+<table id="bahasa" class="table pmd-table table-hover dt-responsive nowrap" cellspacing="0" width="100%">
+  <thead class="">
+    <tr>
+      <th>Kode Bahasa</th>
+      <th>Nama Bahasa</th>
+      <th></th>
+      <th class="text-right">Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+        {if: !empty($pasien.bahasa_pasien)}
+    {loop: $pasien.bahasa_pasien}
+    <tr>
+      <td>{$value.id}</td>
+      <td>{$value.nama_bahasa}</td>
+      <td></td>
+      <td>
+        <a href="{$value.editURL}" class="btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2">
+          <i class='material-icons'>edit</i>
+        </a>
+        <a href='javascript:void(0);'
+            class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm'
+            data-bahasaid='{$value.delURL}' data-target='#delete_bahasa_modal' data-toggle='modal' title='Delete'>
+            <i class='material-icons'>delete_outline</i>
+        </a>
+      </td>
+    </tr>
+    {/loop}
+    {else}
+    <tr><td colspan="9" class="text-center">Data bahasa pasien tidak ditemukan</td></tr>
+    {/if}
+  </tbody>
+</table>

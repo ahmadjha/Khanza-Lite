@@ -51,6 +51,5 @@ $(document).ready(function(){
 
 $('#delete_user_modal').on('show.bs.modal', function (event) {
   let userId = $(event.relatedTarget).data('userid')
-  //$(this).find('.modal-body input').val(userId)
   $("#userId").attr("href", userId);
 })

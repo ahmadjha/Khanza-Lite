@@ -134,14 +134,17 @@ $("#copy_alamat").click(function(){
 });
 
 $(document).ready(function () {
-    $('#patient-datatable').DataTable({
+    var table = $('#patient-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{?=url(ADMIN)?}/pasien/datatable?t={?=$_SESSION['token']?}',
         responsive: {
             details: {
                 type: 'column',
                 target: 'tr'
             }
         },
-        order: [0, 'asc'],
+        order: [0, 'desc'],
         columnDefs: [{
                 width: "40px",
                 targets: 0
@@ -182,10 +185,12 @@ $(document).ready(function () {
     });
     /// Select value
     $('#patient-datatable_wrapper .custom-select-info').hide();
-    var table = $('#patient-datatable').DataTable();
-    var total = table.rows().count();
-    $("#patient-datatable_wrapper .data-table-title").html(
-        '<h2 class="card-title">Total Pasien: ' + total + '</h2>');
+    table.on( 'xhr', function () {
+        var json = table.ajax.json();
+        var totalrecord = json.recordsTotal;
+        $("#patient-datatable_wrapper .data-table-title").html(
+            '<h2 class="card-title">Total: ' + totalrecord + '</h2>');
+    } );
     $("#patient-datatable_wrapper .custom-select-action").html(
         '<button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">delete</i></button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">more_vert</i></button>'
     );
@@ -239,4 +244,74 @@ $(window).resize(function () {
     $('.form-group').on('change keyup keydown paste cut', 'textarea', function () {
         $(this).height(0).height(this.scrollHeight - 10);
     }).find('textarea').change();
+});
+
+$('#delete_patient_modal').on('show.bs.modal', function (event) {
+  let pasienId = $(event.relatedTarget).data('pasienid')
+  $("#pasienId").attr("href", pasienId);
+})
+
+$(document).ready(function () {
+    $("#cara_bayar").DataTable({
+        responsive: { details: { type: "column", target: "tr" } },
+        columnDefs: [{ className: "control", orderable: !1, targets: 5 }],
+        order: [0, "asc"],
+        bFilter: !0,
+        bLengthChange: !0,
+        pagingType: "simple",
+        paging: !0,
+        searching: !0,
+        language: {
+            info: " _START_ - _END_ of _TOTAL_ ",
+            sLengthMenu: "<span class='custom-select-title'>Rows per page:</span> <span class='pmd-custom-select'> _MENU_ </span>",
+            sSearch: "",
+            sSearchPlaceholder: "Search",
+            paginate: { sNext: " ", sPrevious: " " },
+        },
+        dom: "<'card-header d-md-flex flex-row'<'data-table-title mb-3'><'pmd-textfield datatable-search pmd-textfield-outline ml-sm-auto'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'card-footer' <'pmd-datatable-pagination' l i p>>",
+    });
+    $(".custom-select-info").hide();
+    var t = $("#cara_bayar").DataTable().rows().count();
+    $("#cara_bayar_wrapper .data-table-title").html('<h2 class="card-title">Total: ' + t + '</h2>');
+    $(".custom-select-action").html(
+        '<button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">delete</i></button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">more_vert</i></button>'
+    );
+
+    $('#delete_carabayar_modal').on('show.bs.modal', function (event) {
+      let carabayarId = $(event.relatedTarget).data('carabayarid')
+      $("#carabayarId").attr("href", carabayarId);
+    })
+
+});
+
+
+$(document).ready(function () {
+    $("#bahasa").DataTable({
+        responsive: { details: { type: "column", target: "tr" } },
+        columnDefs: [{ className: "control", orderable: !1, targets: 2 }],
+        order: [0, "asc"],
+        bFilter: !0,
+        bLengthChange: !0,
+        pagingType: "simple",
+        paging: !0,
+        searching: !0,
+        language: {
+            info: " _START_ - _END_ of _TOTAL_ ",
+            sLengthMenu: "<span class='custom-select-title'>Rows per page:</span> <span class='pmd-custom-select'> _MENU_ </span>",
+            sSearch: "",
+            sSearchPlaceholder: "Search",
+            paginate: { sNext: " ", sPrevious: " " },
+        },
+        dom: "<'card-header d-md-flex flex-row'<'data-table-title mb-3'><'pmd-textfield datatable-search pmd-textfield-outline ml-sm-auto'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'card-footer' <'pmd-datatable-pagination' l i p>>",
+    });
+    $(".custom-select-info").hide();
+    var t = $("#bahasa").DataTable().rows().count();
+    $("#bahasa_wrapper .data-table-title").html('<h2 class="card-title">Total: ' + t + '</h2>');
+    $(".custom-select-action").html(
+        '<button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">delete</i></button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">more_vert</i></button>'
+    );
 });

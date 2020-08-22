@@ -1,0 +1,66 @@
+<table id="cara_bayar" class="table pmd-table table-hover dt-responsive nowrap" cellspacing="0" width="100%">
+    <!-- Table Heading -->
+    <thead class="">
+        <tr>
+            <th>Kode</th>
+            <th>Nama Cara Bayar</th>
+            <th>Nama Perusahaan</th>
+            <th>Alamat Asuransi</th>
+            <th>No. Telp</th>
+            <th></th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+      {if: !empty($pasien.cara_bayar)}
+      {loop: $pasien.cara_bayar}
+      <tr>
+        <td>{$value.kd_pj}</td>
+        <td>{$value.png_jawab}</td>
+        <td>{$value.nama_perusahaan}</td>
+        <td>{$value.alamat_asuransi}</td>
+        <td>{$value.no_telp}</td>
+        <td></td>
+        <td>
+          <a href="{$value.editURL}" class="btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2">
+            <i class='material-icons'>edit</i>
+          </a>
+          <a href='javascript:void(0);'
+              class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm'
+              data-carabayarid='{$value.delURL}' data-target='#delete_carabayar_modal' data-toggle='modal' title='Delete'>
+              <i class='material-icons'>delete_outline</i>
+          </a>
+        </td>
+      </tr>
+      {/loop}
+      {else}
+      <tr><td colspan="9" class="text-center">Data cara bayar tidak ditemukan</td></tr>
+      {/if}
+    </tbody>
+</table>
+
+<!----------------------------
+Modal | Delete Patient
+----------------------------->
+<div tabindex="-1" class="modal pmd-modal text-center delete-modal" id="delete_carabayar_modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header justify-content-center">
+                <i class="material-icons md-danger-circle pmd-icon-circle pmd-icon-md">
+                    <strong>error_outline</strong>
+                </i>
+            </div>
+            <!-- Modal Body Content -->
+            <div class="modal-body">
+                <h3 class="modal-title mb-2">Are you sure?</h3>
+                <p class="mb-4">Do you really want to delete Patient?<br>This action cannot be
+                    undone.</p>
+                <a href="" class="btn pmd-btn-raised btn-danger pmd-ripple-effect mr-2" id="carabayarId"
+                    title="Delete">Delete</a>
+                <a href="javascript:void(0);" class="btn btn-outline-danger pmd-ripple-effect" title="Cancel"
+                    data-dismiss="modal">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,50 +1,75 @@
+<div id="content" class="pmd-content content-area">
+    <div class="d-flex align-items-center">
+        <div class="">
+            <!-- Page Title -->
+            <h1 class="h2 hide-large-desk">Master Pasien</h1>
+
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb pmd-breadcrumb ">
+                    <li class="breadcrumb-item">
+                        <a href="{?=url(ADMIN)?}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Master Pasien</li>
+                </ol>
+            </nav>
+            <!-- End Breadcrumb -->
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <!-- Tabs -->
+                <div class="pmd-tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab_carabayar" aria-controls="tab_carabayar" role="tab"
+                                data-toggle="tab">Cara Bayar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab_bahasa" aria-controls="tab_bahasa" role="tab"
+                                data-toggle="tab">Bahasa
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#updateSetting" aria-controls="updateSetting" role="tab"
+                                data-toggle="tab">Update
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card pmd-card pmd-data-table">
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <!-- Company Setting -->
+                            <div role="tabpanel" class="tab-pane active" id="tab_carabayar">
+                                {include: ../plugins/pasien/view/admin/cara_bayar.html}
+                            </div>
+                            <!-- End Company Setting -->
+
+                            <!-- APP Setting -->
+                            <div role="tabpanel" class="tab-pane" id="tab_bahasa">
+                              {include: ../plugins/pasien/view/admin/bahasa.html}
+                            </div>
+                            <!-- End APP Setting -->
+
+                            <!-- Update Setting -->
+                            <div role="tabpanel" class="tab-pane" id="updateSetting">
+
+                            </div>
+                            <!-- End Update Setting -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <article class="row">
     <div class="col-md-12">
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Kelola Master Cara Bayar <a href="{?=url(ADMIN.'/pasien/carabayaradd/')?}" class="pull-right" role="tab">[ + ]</a></h3>
-            </div>
-            <div class="panel-body">
-              <div class="table-responsive no-margin">
-                <table class="table table-striped display no-margin" width="100%">
-                  <thead>
-                    <tr>
-                      <th>Kode Cara Bayar</th>
-                      <th>Nama Cara Bayar</th>
-                      <th>Nama Perusahaan</th>
-                      <th>Alamat Asuransi</th>
-                      <th>No. Telp</th>
-                      <th class="text-right">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                        {if: !empty($pasien.cara_bayar)}
-                    {loop: $pasien.cara_bayar}
-                    <tr>
-                      <td>{$value.kd_pj}</td>
-                      <td>{$value.png_jawab}</td>
-                      <td>{$value.nama_perusahaan}</td>
-                      <td>{$value.alamat_asuransi}</td>
-                      <td>{$value.no_telp}</td>
-                      <td class="text-right">
-                        <a href="{$value.editURL}" class="btn btn-success btn-xs">
-                          <i class="fa fa-pencil"></i> <span class="hidden-xs">Ganti</span>
-                        </a>
-                        <a href="{$value.delURL}" class="btn btn-danger btn-xs" data-confirm="Yakin ingin menghapus?">
-    											<i class="fa fa-trash-o"></i> <span class="hidden-xs">Hapus</span>
-    										</a>
-                      </td>
-                    </tr>
-                    {/loop}
-                    {else}
-                    <tr><td colspan="9" class="text-center">Data cara bayar tidak ditemukan</td></tr>
-                    {/if}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-        </div>
 
         <div class="panel panel-default">
             <div class="panel-heading">

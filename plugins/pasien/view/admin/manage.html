@@ -27,62 +27,18 @@ Content Area
             <!-- Table Heading -->
             <thead class="">
                 <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Patient ID</th>
-                    <th>Email ID</th>
-                    <th>Contact No.</th>
+                    <th>Nomor RM</th>
+                    <th>Nama Pasien</th>
+                    <th>Nomor KTP</th>
+                    <th>Alamat</th>
                     <th>Umur</th>
-                    <th>Blood Group</th>
-                    <th>Status</th>
+                    <th>Gol. Darah</th>
+                    <th>Asuransi</th>
+                    <th>Pekerjaan</th>
                     <th></th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                {if: !empty($pasien.list)}
-                {loop: $pasien.list}
-                <tr>
-                    <td data-title="No">{$value.no}</td>
-                    <td data-title="Name">
-                        <div class='d-flex align-items-center'>
-                            <img src='{?=url(MODULES.'/pasien/img/'.$value.jk.'.png')?}' alt='Profile Image'
-                                class='rounded-circle mr-3' width='40' height='40'>
-                            <div class='media-body'>{$value.nm_pasien}</div>
-                        </div>
-                    </td>
-                    <td data-title="Patient ID">{$value.no_rkm_medis}</td>
-                    <td data-title="Email ID">
-                        <a href="mailto:nicholas89@example.com">{$value.email}</a>
-                    </td>
-                    <td data-title="Contact No.">{$value.no_tlp}</td>
-                    <td data-title="Umur">{$value.umur}</td>
-                    <td data-title="Blood Group">{$value.gol_darah}</td>
-                    <td data-title="Status">
-                        <span class='badge badge-pill pmd-badge-outline-secondary'>{$value.kd_pj}</span>
-                    </td>
-                    <td class=""></td>
-                    <td data-title="Actions">
-                        <a href='{$value.viewURL}'
-                            class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2'
-                            title='View Profile'>
-                            <i class='material-icons'>visibility</i>
-                        </a>
-                        <a href='{$value.viewURL}'
-                            class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2'
-                            title='Edit'>
-                            <i class='material-icons'>edit</i>
-                        </a>
-                        <a href='javascript:void(0);'
-                            class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm'
-                            data-target='#delete_patient_modal' data-toggle='modal' title='Delete'>
-                            <i class='material-icons'>delete_outline</i>
-                        </a>
-                    </td>
-                </tr>
-                {/loop}
-                {/if}
-            </tbody>
         </table>
     </div>
     <!-- End Data Table -->
@@ -106,8 +62,8 @@ Modal | Delete Patient
                 <h3 class="modal-title mb-2">Are you sure?</h3>
                 <p class="mb-4">Do you really want to delete Patient?<br>This action cannot be
                     undone.</p>
-                <a href="javascript:void(0);" class="btn pmd-btn-raised btn-danger pmd-ripple-effect mr-2"
-                    title="Delete" data-dismiss="modal">Delete</a>
+                <a href="" class="btn pmd-btn-raised btn-danger pmd-ripple-effect mr-2" id="pasienId"
+                    title="Delete">Delete</a>
                 <a href="javascript:void(0);" class="btn btn-outline-danger pmd-ripple-effect" title="Cancel"
                     data-dismiss="modal">Cancel</a>
             </div>
