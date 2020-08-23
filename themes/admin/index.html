@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="{$opensimrs.path}/assets/css/bootstrap.min.css?v={$opensimrs.version}" rel="stylesheet">
     <link href="{$opensimrs.path}/assets/css/selectator.css?v={$opensimrs.version}" rel="stylesheet">
-
     <style>
       .alert-content{padding-top:5rem;padding-left:1.25rem;padding-right:1.25rem;position: absolute; top: 0; right: 0;}
     </style>
@@ -110,7 +109,7 @@
         <div class="navbar-header fixed-top">
             <!-- Navbar Logo for Desktop view -->
             <a class="navbar-brand navbar-custom-brand d-none d-md-block" style="text-align:left !important;" href="{?=url(ADMIN)?}">
-                <img src="{?=url(THEMES.'/admin/assets/images/logo-yaski.png')?}" alt="Logo" class="img-fluid" width="40"> <span class="text-white">Khanza <strong>LITE</strong></span>
+                <img src="{?=url('/assets/images/logo-yaski.png')?}" alt="Logo" class="img-fluid" width="40"> <span class="text-white">Khanza <strong>LITE</strong></span>
             </a>
             <!-- User Info For Responsive View -->
             <div class="pmd-user-info d-block d-md-none text-center">
@@ -171,9 +170,7 @@
     <!-- Module Content -->
     {$module.content}
 
-    <!----------------------------
-		Footer
- 	----------------------------->
+    <!-- Footer -->
     <footer class="pmd-footer">
         <div class="container-fluid">
             <div class="row">
@@ -187,11 +184,10 @@
     </footer>
     <!-- End Footer -->
 
-    <!-- build:remove -->
     <!--Admin js-->
     <script src="{$opensimrs.path}/assets/js/bootstrap.min.js"></script>
     <script src="{$opensimrs.path}/assets/js/selectator.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+    <script src="{$opensimrs.path}/assets/js/bootbox.min.js"></script>
     <script src="{?=url(THEMES.'/admin/js/script.js')?}"></script>
     <!-- /build -->
     {loop: $opensimrs.footer}{$value}{/loop}
