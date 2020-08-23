@@ -5,29 +5,17 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
 	<title>{$opensimrs.title}</title>
-	<meta name="description"
-		content="Simple Login Page Template. e-Health Care Admin Theme is a multipurpose and fully responsive Bootstrap 4 and Material Design based Admin HTML Template by Propeller designed mainly for Clinics, Hospitals, Dentists and more such applications related to health care." />
-	<link rel="shortcut icon" type="image/x-icon" href="{?=url(THEMES.'/admin/assets/images/logo-yaski.png')?}">
-
-	<!-- Google icon -->
+	<meta name="description" content="Simple Login Page Template. e-Health Care Admin Theme is a multipurpose and fully responsive Bootstrap 4 and Material Design based Admin HTML Template by Propeller designed mainly for Clinics, Hospitals, Dentists and more such applications related to health care." />
+	<link rel="shortcut icon" type="image/x-icon" href="{$opensimrs.path}/assets/images/logo-yaski.png">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-	<!-- Rubik and Open sans Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700"
-		rel="stylesheet">
-
-	<!-- build:remove -->
-	<!-- e-Health Care Admin Theme CSS -->
-	<link rel="stylesheet" type="text/css" href="{?=url(THEMES.'/admin/assets/css/bootstrap.min.css')?}">
-	<!-- /build -->
+	<link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700" rel="stylesheet">
+	<link href="{$opensimrs.path}/assets/css/bootstrap.min.css?v={$opensimrs.version}" rel="stylesheet">
+	<link href="{$opensimrs.path}/assets/css/selectator.css?v={$opensimrs.version}" rel="stylesheet">
 
 </head>
 
 <body class="m-0 h-100">
 
-	<!----------------------------
-		Login Page
-	 ----------------------------->
 	<div class="bg-white login-v1 h-100">
 		<div class="container-fluid h-100">
 			<div class="row h-100 justify-content-center login-sec">
@@ -146,14 +134,7 @@
 		</div>
 	</div>
 	<!-- End Login page -->
-
-	<!-- build:include snippets/js-files-404.html -->
-	<!-- /build -->
-
-	<!-- build:remove -->
-	<!--Admin js-->
-	<script type="text/javascript" src="{?=url(THEMES.'/admin/assets/js/bootstrap.min.js')?}"></script>
-	<!-- /build -->
+	<script src="{$opensimrs.path}/assets/js/bootstrap.min.js"></script>
 </body>
 
 </html>
