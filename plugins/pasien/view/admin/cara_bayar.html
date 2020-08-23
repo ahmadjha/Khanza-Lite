@@ -39,6 +39,79 @@
     </tbody>
 </table>
 
+<!-- Add Department button -->
+<div class="menu list-view pmd-floating-action" role="navigation">
+    <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary text-white pmd-sidebar-toggle"
+        data-title="Add Cara Bayar Pasien" href="javascript:void(0);" data-target="addCaraBayarPasienSidebar" data-placement="right"
+        data-position='fixed'>
+        <i class="material-icons">add</i>
+    </a>
+</div>
+
+<!----------------------------
+Right Sidebar | Add Department
+----------------------------->
+<aside id="addCaraBayarPasienSidebar" class="pmd-sidebar bg-white pmd-sidebar-right-fixed pmd-z-depth-light-2 add-sidebar"
+    role="rightSidebar">
+    <div class="card pmd-card">
+        <!-- Card Header -->
+        <div class="card-header pmd-card-border">
+            <h3 class="card-title d-flex justify-content-between">Tambah User Baru
+                <button class="close pmd-sidebar-toggle" data-target="addCaraBayarPasienSidebar" data-position='fixed'
+                    data-placement="right" type="button">
+                    <i class="material-icons">close</i>
+                </button>
+            </h3>
+        </div>
+        <!-- Card Body | Form Fields -->
+        <form name="user" action="{?=url(ADMIN.'/users/save/'.@$user_add.form.id)?}" method="POST" class="card-body">
+            <!-- Text Input Field -->
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
+                <label for="department-name">Pengguna</label>
+                <select name="username" id="username" class="custom-select">
+                    {loop: $user_add.user}
+                        <option value="{$value.nik}"{if: $value.nik == $user_add.form.username} selected{/if}>{$value.nama}</option>
+                    {/loop}
+                </select>
+                <div class="invalid-feedback">Please Enter a Department Name. </div>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
+                <label>Role</label>
+                <select name="role" class="custom-select">
+                  {loop: $user_add.role}
+                    <option value="{$value}"{if: $value == $user_add.form.role} selected{/if}>{$value}</option>
+                  {/loop}
+                </select>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
+                <label>Capability</label>
+                <select name="cap" class="custom-select">
+                  {loop: $user_add.cap}
+                    <option value="{$value.cap}"{if: $value.cap == $user_add.form.cap} selected{/if}>{$value.nm_cap}</option>
+                  {/loop}
+                </select>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
+                <label>Akses</label>
+                <select name="access[]" multiple class="custom-select" data-keep-open="true" data-use-dimmer="false" data-options-height="126px" {if: isset_or($user_add.form.id, 0) == 1}disabled{/if} required>
+                    {loop: $user_add.modules}
+                    <option value="{$value.dir}" data-left="<i class='material-icons'>{$value.icon}</i>" {$value.attr}>{$value.name}</option>
+                    {/loop}
+                </select>
+            </div>
+            <!-- Form Actions -->
+            <div class="pmd-modal-action">
+                <button type="submit" name="save" class="btn btn-block pmd-btn-raised d-block btn-primary pmd-ripple-effect mb-2 ml-0 pmd-sidebar-toggle"
+                    title="Add User">Simpan</button>
+                <a href="javascript:void(0);" data-target="addCaraBayarPasienSidebar" data-position='fixed' data-placement="right"
+                    class="m-0 btn d-block btn-outline-secondary pmd-ripple-effect pmd-btn-flat pmd-sidebar-toggle"
+                    title="Cancel">Batal</a>
+            </div>
+        </form>
+    </div>
+</aside>
+<!-- End Right Sidebar | Add Department -->
+
 <!----------------------------
 Modal | Delete Patient
 ----------------------------->

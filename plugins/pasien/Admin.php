@@ -975,6 +975,7 @@ RR: '.$pemeriksaan_ralan['respirasi'].' /mnt';
 
     public function getSettings()
     {
+        $this->_addHeaderFiles();
         $this->assign['pasien'] = htmlspecialchars_array($this->options('pasien'));
         return $this->draw('settings.html', ['settings' => $this->assign]);
     }

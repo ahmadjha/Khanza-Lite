@@ -1,0 +1,61 @@
+<div id="content" class="pmd-content content-area">
+    <!-- Page Title for Responsive View -->
+    <h1 class="h2 hide-large-desk">Pengguna</h1>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb pmd-breadcrumb ">
+            <li class="breadcrumb-item">
+                <a href="dashboard.html">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Ubah Pengguna</li>
+        </ol>
+    </nav>
+    <!-- End Breadcrumb -->
+
+    <!-- Data Table -->
+    <div class="card pmd-card">
+        <!-- Card Body | Form Fields -->
+        <form name="user" action="{?=url(ADMIN.'/users/save/'.@$user_add.form.id)?}" method="POST" class="card-body">
+            <!-- Text Input Field -->
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
+                <label for="department-name">Pengguna</label>
+                <select name="username" id="username" class="custom-select">
+                    {loop: $users.user}
+                        <option value="{$value.nik}"{if: $value.nik == $users.form.username} selected{/if}>{$value.nama}</option>
+                    {/loop}
+                </select>
+                <div class="invalid-feedback">Please Enter a Department Name. </div>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
+                <label>Role</label>
+                <select name="role" class="custom-select">
+                  {loop: $users.role}
+                    <option value="{$value}"{if: $value == $users.form.role} selected{/if}>{$value}</option>
+                  {/loop}
+                </select>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
+                <label>Capability</label>
+                <select name="cap" class="custom-select">
+                  {loop: $users.cap}
+                    <option value="{$value.cap}"{if: $value.cap == $users.form.cap} selected{/if}>{$value.nm_cap}</option>
+                  {/loop}
+                </select>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-outline">
+                <label>Akses</label>
+                <select name="access[]" multiple class="custom-select" data-keep-open="true" data-use-dimmer="false" data-options-height="126px" {if: isset_or($users.form.id, 0) == 1}disabled{/if} required>
+                    {loop: $users.modules}
+                    <option value="{$value.dir}" data-left="<i class='material-icons'>{$value.icon}</i>" {$value.attr}>{$value.name}</option>
+                    {/loop}
+                </select>
+            </div>
+            <!-- Form Actions -->
+            <div class="pmd-modal-action">
+                <button type="submit" name="save" class="btn pmd-btn-raised d-block btn-primary pmd-ripple-effect mb-2 ml-0 pmd-sidebar-toggle"
+                    title="Add User">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>

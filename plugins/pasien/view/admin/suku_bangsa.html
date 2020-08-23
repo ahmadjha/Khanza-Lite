@@ -1,18 +1,18 @@
-<table id="bahasa" class="table pmd-table table-hover dt-responsive nowrap" cellspacing="0" width="100%">
+<table id="suku_bangsa" class="table pmd-table table-hover dt-responsive nowrap" cellspacing="0" width="100%">
   <thead class="">
     <tr>
-      <th>Kode Bahasa</th>
-      <th>Nama Bahasa</th>
+      <th>Kode Suku Bangsa</th>
+      <th>Nama Suku Bangsa</th>
       <th></th>
       <th>Aksi</th>
     </tr>
   </thead>
   <tbody>
-        {if: !empty($pasien.bahasa_pasien)}
-    {loop: $pasien.bahasa_pasien}
+    {if: !empty($pasien.suku_bangsa)}
+    {loop: $pasien.suku_bangsa}
     <tr>
       <td>{$value.id}</td>
-      <td>{$value.nama_bahasa}</td>
+      <td>{$value.nama_suku_bangsa}</td>
       <td></td>
       <td>
         <a href="{$value.editURL}" class="btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2">
@@ -27,7 +27,7 @@
     </tr>
     {/loop}
     {else}
-    <tr><td colspan="9" class="text-center">Data bahasa pasien tidak ditemukan</td></tr>
+    <tr><td colspan="4" class="text-center">Data bahasa pasien tidak ditemukan</td></tr>
     {/if}
   </tbody>
 </table>
@@ -35,7 +35,7 @@
 <!-- Add Department button -->
 <div class="menu list-view pmd-floating-action" role="navigation">
     <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary text-white pmd-sidebar-toggle"
-        data-title="Add Bahasa Pasien" href="javascript:void(0);" data-target="addBahasaPasienSidebar" data-placement="right"
+        data-title="Add Suku Bangsa Pasien" href="javascript:void(0);" data-target="addSukuBangsaPasienSidebar" data-placement="right"
         data-position='fixed'>
         <i class="material-icons">add</i>
     </a>
@@ -44,13 +44,13 @@
 <!----------------------------
 Right Sidebar | Add Department
 ----------------------------->
-<aside id="addBahasaPasienSidebar" class="pmd-sidebar bg-white pmd-sidebar-right-fixed pmd-z-depth-light-2 add-sidebar"
+<aside id="addSukuBangsaPasienSidebar" class="pmd-sidebar bg-white pmd-sidebar-right-fixed pmd-z-depth-light-2 add-sidebar"
     role="rightSidebar">
     <div class="card pmd-card">
         <!-- Card Header -->
         <div class="card-header pmd-card-border">
             <h3 class="card-title d-flex justify-content-between">Tambah User Baru
-                <button class="close pmd-sidebar-toggle" data-target="addBahasaPasienSidebar" data-position='fixed'
+                <button class="close pmd-sidebar-toggle" data-target="addSukuBangsaPasienSidebar" data-position='fixed'
                     data-placement="right" type="button">
                     <i class="material-icons">close</i>
                 </button>
@@ -95,8 +95,8 @@ Right Sidebar | Add Department
             <!-- Form Actions -->
             <div class="pmd-modal-action">
                 <button type="submit" name="save" class="btn btn-block pmd-btn-raised d-block btn-primary pmd-ripple-effect mb-2 ml-0 pmd-sidebar-toggle"
-                    title="Add User">Simpan</button>
-                <a href="javascript:void(0);" data-target="addBahasaPasienSidebar" data-position='fixed' data-placement="right"
+                    title="Add Suku Bangsa">Simpan</button>
+                <a href="javascript:void(0);" data-target="addSukuBangsaPasienSidebar" data-position='fixed' data-placement="right"
                     class="m-0 btn d-block btn-outline-secondary pmd-ripple-effect pmd-btn-flat pmd-sidebar-toggle"
                     title="Cancel">Batal</a>
             </div>

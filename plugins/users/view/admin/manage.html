@@ -44,10 +44,10 @@ Content Area
                     <td data-title="Akses Modul">{$value.access}</td>
                     <td class=""></td>
                     <td data-title="Actions">
-                        <a href='javascript:void(0);'
+                        <a href='{$value.editURL}'
                             class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm mr-2'
-                            data-target='#view_user_modal' data-toggle='modal' title='View'>
-                            <i class='material-icons'>visibility</i>
+                            title='View'>
+                            <i class='material-icons'>edit</i>
                         </a>
                         <a href='#'
                             class='btn pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm'
@@ -147,49 +147,7 @@ Modal | View
 <div tabindex="-1" class="modal pmd-modal" id="view_user_modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header pmd-modal-border">
-                <h3 class="modal-title">Appointment Detail</h3>
-                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
-                    <i class="material-icons">close</i>
-                </button>
-            </div>
-            <!-- Modal Body Content -->
-            <div class="modal-body mb-4">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label class="title-label">Appointment ID</label>
-                        <p>APT-101</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="title-label">Patient ID</label>
-                        <p>XYZ-101</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="title-label">Department</label>
-                        <p>Endoscopy</p>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label class="title-label">Doctor Name</label>
-                        <p>Russell Walker</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="title-label">Appointment Date</label>
-                        <p>12<sup>th</sup> April 2019</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="title-label">Appointment Time</label>
-                        <p>11:00 AM</p>
-                    </div>
-                    <div class="col-sm-12">
-                        <label class="title-label">Problem</label>
-                        <p>During an upper endoscopy, an endoscope is easily passed through the mouth and throat and
-                            into the esophagus, allowing the doctor to view the esophagus, stomach, and upper part
-                            of the small intestine.</p>
-                    </div>
-                </div>
-            </div>
+          ...
         </div>
     </div>
 </div>

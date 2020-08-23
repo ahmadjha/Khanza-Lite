@@ -96,6 +96,13 @@ class Admin extends AdminModule
         } else {
             redirect(url([ADMIN, 'users', 'manage']));
         }
+
+        //$this->core->addCSS(url('assets/css/bootstrap.min.css'));
+        //$this->core->addJS(url('assets/js/bootstrap.min.js'));
+        //$this->tpl->set('users', $this->assign);
+        //echo $this->tpl->draw(MODULES.'/users/view/admin/form.html', true);
+        //exit();
+
     }
 
     /**

@@ -315,3 +315,105 @@ $(document).ready(function () {
         '<button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">delete</i></button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">more_vert</i></button>'
     );
 });
+
+$(document).ready(function () {
+    $("#suku_bangsa").DataTable({
+        responsive: { details: { type: "column", target: "tr" } },
+        columnDefs: [{ className: "control", orderable: !1, targets: 2 }],
+        order: [0, "asc"],
+        bFilter: !0,
+        bLengthChange: !0,
+        pagingType: "simple",
+        paging: !0,
+        searching: !0,
+        language: {
+            info: " _START_ - _END_ of _TOTAL_ ",
+            sLengthMenu: "<span class='custom-select-title'>Rows per page:</span> <span class='pmd-custom-select'> _MENU_ </span>",
+            sSearch: "",
+            sSearchPlaceholder: "Search",
+            paginate: { sNext: " ", sPrevious: " " },
+        },
+        dom: "<'card-header d-md-flex flex-row'<'data-table-title mb-3'><'pmd-textfield datatable-search pmd-textfield-outline ml-sm-auto'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'card-footer' <'pmd-datatable-pagination' l i p>>",
+    });
+    $(".custom-select-info").hide();
+    var t = $("#suku_bangsa").DataTable().rows().count();
+    $("#suku_bangsa_wrapper .data-table-title").html('<h2 class="card-title">Total: ' + t + '</h2>');
+    $(".custom-select-action").html(
+        '<button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">delete</i></button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">more_vert</i></button>'
+    );
+});
+
+$(document).ready(function () {
+    $("#cacat_fisik").DataTable({
+        responsive: { details: { type: "column", target: "tr" } },
+        columnDefs: [{ className: "control", orderable: !1, targets: 2 }],
+        order: [0, "asc"],
+        bFilter: !0,
+        bLengthChange: !0,
+        pagingType: "simple",
+        paging: !0,
+        searching: !0,
+        language: {
+            info: " _START_ - _END_ of _TOTAL_ ",
+            sLengthMenu: "<span class='custom-select-title'>Rows per page:</span> <span class='pmd-custom-select'> _MENU_ </span>",
+            sSearch: "",
+            sSearchPlaceholder: "Search",
+            paginate: { sNext: " ", sPrevious: " " },
+        },
+        dom: "<'card-header d-md-flex flex-row'<'data-table-title mb-3'><'pmd-textfield datatable-search pmd-textfield-outline ml-sm-auto'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'card-footer' <'pmd-datatable-pagination' l i p>>",
+    });
+    $(".custom-select-info").hide();
+    var t = $("#cacat_fisik").DataTable().rows().count();
+    $("#cacat_fisik_wrapper .data-table-title").html('<h2 class="card-title">Total: ' + t + '</h2>');
+    $(".custom-select-action").html(
+        '<button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">delete</i></button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">more_vert</i></button>'
+    );
+});
+
+$(document).ready(function () {
+    $("#perusahaan_pasien").DataTable({
+        responsive: { details: { type: "column", target: "tr" } },
+        columnDefs: [{ className: "control", orderable: !1, targets: 2 }],
+        order: [0, "asc"],
+        bFilter: !0,
+        bLengthChange: !0,
+        pagingType: "simple",
+        paging: !0,
+        searching: !0,
+        language: {
+            info: " _START_ - _END_ of _TOTAL_ ",
+            sLengthMenu: "<span class='custom-select-title'>Rows per page:</span> <span class='pmd-custom-select'> _MENU_ </span>",
+            sSearch: "",
+            sSearchPlaceholder: "Search",
+            paginate: { sNext: " ", sPrevious: " " },
+        },
+        dom: "<'card-header d-md-flex flex-row'<'data-table-title mb-3'><'pmd-textfield datatable-search pmd-textfield-outline ml-sm-auto'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'card-footer' <'pmd-datatable-pagination' l i p>>",
+    });
+    $(".custom-select-info").hide();
+    var t = $("#perusahaan_pasien").DataTable().rows().count();
+    $("#perusahaan_pasien_wrapper .data-table-title").html('<h2 class="card-title">Total: ' + t + '</h2>');
+    $(".custom-select-action").html(
+        '<button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">delete</i></button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">more_vert</i></button>'
+    );
+});
+
+$(document).ready(function () {
+    // Edit Hospital Info
+    $('.edit-setting-link').on('click', function (e) {
+        e.preventDefault();
+        $(".view-setting-fields").hide();
+        $(".edit-setting-fields").show();
+    });
+    $('#update-setting-info, #cancel-setting-info').on('click', function (e) {
+        e.preventDefault();
+        $(".view-setting-fields").show();
+        $(".edit-setting-fields").hide();
+    });
+
+});

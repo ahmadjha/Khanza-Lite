@@ -1,4 +1,4 @@
-.selectator {width:320px !important}
+.pmd-sidebar .selectator {width:320px !important}
 @media (max-width:767.98px) {
-  .selectator {width:248px !important}
+  .pmd-sidebar .selectator {width:248px !important}
 }
