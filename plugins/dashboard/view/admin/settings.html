@@ -1,26 +1,30 @@
-<article class="row">
+<article class="row clearfix">
     <form action="{?=url(ADMIN.'/dashboard/saveSettings')?}" method="POST">
         <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Pengaturan Dashboard</h3>
+            <div class="card">
+                <div class="header">
+                    <h2>Pengaturan Dashboard</h2>
                 </div>
-            	  <div class="panel-body">
-                    <div class="form-group">
+            	  <div class="body">
+                    <div class="input-group">
                         <label>Cara Bayar Umum</label>
-                        <select name="dashboard[umum]" class="form-control">
-                          {loop: $settings.penjab}
-                            <option value="{$value.kd_pj}" {if: $value.kd_pj == $settings.dashboard.umum}selected{/if}>{$value.png_jawab}</option>
-                          {/loop}
-                        </select>
+                        <div class="form-line">
+                            <select name="dashboard[umum]" class="form-control">
+                              {loop: $settings.penjab}
+                                <option value="{$value.kd_pj}" {if: $value.kd_pj == $settings.dashboard.umum}selected{/if}>{$value.png_jawab}</option>
+                              {/loop}
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <div class="input-group">
                         <label>Cara Bayar BPJS</label>
-                        <select name="dashboard[bpjs]" class="form-control">
-                          {loop: $settings.penjab}
-                            <option value="{$value.kd_pj}" {if: $value.kd_pj == $settings.dashboard.bpjs}selected{/if}>{$value.png_jawab}</option>
-                          {/loop}
-                        </select>
+                        <div class="form-line">
+                            <select name="dashboard[bpjs]" class="form-control">
+                              {loop: $settings.penjab}
+                                <option value="{$value.kd_pj}" {if: $value.kd_pj == $settings.dashboard.bpjs}selected{/if}>{$value.png_jawab}</option>
+                              {/loop}
+                            </select>
+                        </div>
                     </div>
                     <input type="submit" name="save" class="btn btn-primary" value="Simpan" />
                 </div>

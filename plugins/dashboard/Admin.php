@@ -25,8 +25,8 @@ class Admin extends AdminModule
     {
 
         $this->core->addCSS(url(MODULES.'/dashboard/css/admin/style.css?v={$opensimrs.version}'));
-        $this->core->addJS(url(BASE_DIR.'/assets/jscripts/Chart.bundle.min.js'));
-        $this->core->addJS(url(MODULES.'/dashboard/js/app.js?v={$opensimrs.version}'));
+        $this->core->addJS(url(BASE_DIR.'/assets/jscripts/Chart.bundle.min.js'), footer);
+        $this->core->addJS(url(MODULES.'/dashboard/js/app.js?v={$opensimrs.version}'), footer);
 
         $settings = htmlspecialchars_array($this->options('dashboard'));
         $stats['getPasiens'] = number_format($this->countPasien(),0,'','.');
@@ -42,7 +42,7 @@ class Admin extends AdminModule
         $stats['percentMonth'] = number_format((($this->countMonthVisite()-$this->countLastMonthVisite())/$this->countMonthVisite())*100,0,'','.');
         $stats['percentDays'] = 0;
         if($this->countCurrentVisite() != 0) {
-          $stats['percentDays'] = number_format((($this->countCurrentVisite()-$this->countLastCurrentVisite())/$this->countCurrentVisite())*100,0,'','.');          
+          $stats['percentDays'] = number_format((($this->countCurrentVisite()-$this->countLastCurrentVisite())/$this->countCurrentVisite())*100,0,'','.');
         }
         $stats['poliChart'] = $this->poliChart();
         $stats['KunjunganTahunChart'] = $this->KunjunganTahunChart();
