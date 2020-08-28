@@ -27,13 +27,13 @@ Content Area
                     <a title="Aktif"
                         class="btn btn-outline-dark pmd-btn-fab pmd-ripple-effect nav-link btn-sm {if: $tab == 'active'}active{/if}"
                         href="{?=url(ADMIN.'/modules/manage/active')?}" role="tab">
-                        <i class="material-icons">visibility</i>
+                        <i class="material-icons">power</i>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a title="Tidak Aktif" class="btn btn-outline-dark pmd-btn-fab pmd-ripple-effect nav-link btn-sm {if: $tab == 'inactive'}active{/if}"
                         href="{?=url(ADMIN.'/modules/manage/inactive')?}" role="tab"">
-                        <i class="material-icons">visibility_off</i>
+                        <i class="material-icons">power_off</i>
                     </a>
                 </li>
             </ul>
@@ -85,12 +85,13 @@ Content Area
                         {if: $value.installed}
                             <a href='{$value.uninstallUrl}'
                                 class='btn btn-danger pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm {if: $value.basic}disabled{/if}'
-                                data-confirm='Yakin ingin menonaktifkan modul ini?' title='Delete'>
+                                data-confirm='Yakin ingin menonaktifkan modul ini?' title='Nonaktifkan'>
                                 <i class='material-icons'>power_off</i>
                             </a>
                         {else}
                             <a href='{$value.installUrl}'
-                                class='btn btn-danger pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm {if: !$value.compatible}disabled{/if}'>
+                                class='btn btn-danger pmd-btn-fab pmd-btn-flat btn-dark pmd-ripple-effect btn-sm {if: !$value.compatible}disabled{/if}'
+                                data-confirm='Yakin ingin mengaktifkan modul ini?' title='Aktifkan'>
                                 <i class='material-icons'>power</i>
                             </a>
                             <a href='javascript:void(0);'
