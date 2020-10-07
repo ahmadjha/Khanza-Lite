@@ -6,7 +6,7 @@ return [
     'author'        =>  'Basoro',
     'version'       =>  '1.3',
     'compatibility' =>  '2020',
-    'icon'          =>  'user-plus',
+    'icon'          =>  'clipboard-account',
 
     'install'       =>  function () use ($core) {
         $core->db()->pdo()->exec("INSERT INTO `lite_options` (`module`, `field`, `value`) VALUES ('pendaftaran', 'cekstatusbayar', '0')");

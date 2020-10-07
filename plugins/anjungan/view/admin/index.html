@@ -1,47 +1,84 @@
-<div class="row">
-    <div class="col">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Anjungan Mandiri</h3>
-            </div>
-            <div class="panel-body">
-                <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" src="{?=url('anjungan/antrian')?}"></iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>OpenSIMR</title>
+<link rel="icon" href="{?=url()?}/favicon.png" type="image/x-icon">
+<meta name="keywords" content="OpenSIMR">
+<meta name="description" content="OpenSIMR Indonesia">
+<meta name="author" content="drg. Faisol Basoro">
+<link href="{?=url()?}/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="{?=url()?}/assets/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="{?=url()?}/themes/admin/css/style.min.css" rel="stylesheet">
+<link href="{?=url()?}/plugins/dashboard/css/admin/style.css" rel="stylesheet">
+
+
+
+<link href="{?=url()?}/assets/css/animate.min.css" rel="stylesheet">
+<link href="{?=url()?}/themes/admin/css/selectator.css" rel="stylesheet">
+<link href="{?=url()?}/assets/css/font-awesome.css" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Anjungan Mandiri</h4>
                 </div>
-                <div class="text-center">
-                    <a href="{?= url('anjungan/antrian') ?}" target="_blank" class="btn btn-primary">Antrian Mandiri</a>
+                <div class="card-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="{?=url('anjungan/antrian')?}"></iframe>
+                    </div>
+                    <div class="text-center">
+                        <a href="{?= url('anjungan/antrian') ?}" target="_blank" class="btn btn-primary">Antrian Mandiri</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Antrian Loket</h4>
+                </div>
+                <div class="card-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="{?=url('anjungan/loket')?}"></iframe>
+                    </div>
+                    <div class="text-center">
+                        <a href="{?= url('anjungan/loket') ?}" target="_blank" class="btn btn-primary">Antrian Loket</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Antrian Poli</h4>
+                </div>
+                <div class="card-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="{?=url('anjungan/poli')?}"></iframe>
+                    </div>
+                    <div class="text-center">
+                      <a href="{?= url('anjungan/poli') ?}" target="_blank" class="btn btn-primary">Antrian Poli</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Antrian Loket</h3>
-            </div>
-            <div class="panel-body">
-                <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" src="{?=url('anjungan/loket')?}"></iframe>
-                </div>
-                <div class="text-center">
-                    <a href="{?= url('anjungan/loket') ?}" target="_blank" class="btn btn-primary">Antrian Loket</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Antrian Poli</h3>
-            </div>
-            <div class="panel-body">
-                <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" src="{?=url('anjungan/poli')?}"></iframe>
-                </div>
-                <div class="text-center">
-                  <a href="{?= url('anjungan/poli') ?}" target="_blank" class="btn btn-primary">Antrian Poli</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <script type="text/javascript" src="{?=url()?}/assets/jscripts/jquery.min.js"></script>
+    <script type="text/javascript" src="{?=url()?}/assets/jscripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{?=url()?}/themes/admin/js/main.min.js"></script>
+
+
+    <script src="{?=url()?}/assets/jscripts/bootbox.min.js"></script>
+    <script src="{?=url()?}/assets/jscripts/tinynav.min.js"></script>
+    <script src="{?=url()?}/themes/admin/js/kalypto.min.js"></script>
+    <script src="{?=url()?}/themes/admin/js/selectator.js"></script>
+
+</body>
+</html>

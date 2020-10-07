@@ -11,23 +11,40 @@ class Admin extends AdminModule
     {
         if ($this->core->getUserInfo('id') == 1) {
             return [
+                'Index' => 'index',
                 'Main' => 'main',
                 'Pengaturan' => 'settings'
             ];
         } else {
             return [
+                'Index' => 'index',
                 'Main' => 'main'
             ];
         }
     }
 
+    public function getIndex__()
+    {
+
+        echo $this->draw('index.html');
+        exit();
+
+    }
+
     public function getMain()
     {
 
-        $this->core->addCSS(url(MODULES.'/dashboard/css/admin/style.css?v={$opensimrs.version}'));
-        $this->core->addJS(url(BASE_DIR.'/assets/jscripts/Chart.bundle.min.js'));
-        $this->core->addJS(url(MODULES.'/dashboard/js/webcam.js?v={$opensimrs.version}'), 'footer');
-        $this->core->addJS(url(MODULES.'/dashboard/js/app.js?v={$opensimrs.version}'), 'footer');
+        return $this->draw('main.html');
+
+    }
+
+    public function getIndex()
+    {
+
+        //$this->core->addCSS(url(MODULES.'/dashboard/css/admin/style.css?v={$opensimrs.version}'));
+        //$this->core->addJS(url(BASE_DIR.'/assets/jscripts/Chart.bundle.min.js'));
+        //$this->core->addJS(url(MODULES.'/dashboard/js/webcam.js?v={$opensimrs.version}'), 'footer');
+        //$this->core->addJS(url(MODULES.'/dashboard/js/app.js?v={$opensimrs.version}'), 'footer');
 
         $settings = htmlspecialchars_array($this->options('dashboard'));
         $stats['getPasiens'] = number_format($this->countPasien(),0,'','.');
@@ -70,7 +87,7 @@ class Admin extends AdminModule
         $idpeg        = $this->db('barcode')->where('barcode', $this->core->getUserInfo('username', null, true))->oneArray();
         $cek_presensi = $this->db('temporary_presensi')->where('id', $idpeg['id'])->oneArray();
 
-        return $this->draw('dashboard.html', [
+        echo $this->draw('dashboard.html', [
           'settings' => $settings,
           'stats' => $stats,
           'cek_presensi' => $cek_presensi,
@@ -78,6 +95,7 @@ class Admin extends AdminModule
           'pasien' => $this->db('pasien')->join('penjab', 'penjab.kd_pj = pasien.kd_pj')->desc('tgl_daftar')->limit('5')->toArray(),
           'dokter' => $this->db('dokter')->join('spesialis', 'spesialis.kd_sps = dokter.kd_sps')->join('jadwal', 'jadwal.kd_dokter = dokter.kd_dokter')->where('jadwal.hari_kerja', $hari)->where('dokter.status', '1')->group('dokter.kd_dokter')->rand()->limit('6')->toArray()
         ]);
+        exit();
 
     }
 

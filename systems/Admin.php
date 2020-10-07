@@ -37,6 +37,7 @@ class Admin extends Main
 
         $this->assign['notify']         = $this->getNotify();
         $this->assign['path']           = url();
+        $this->assign['dashboard']     = url(ADMIN.'/dashboard/index');
         $this->assign['title']          = $this->getSettings('nama_instansi');
         $this->assign['logo']           = $this->getSettings('logo');
         $this->assign['version']        = $this->options->get('settings.version');

@@ -47,7 +47,8 @@ class Admin extends AdminModule
 
         $this->tpl->set('settings', $this->tpl->noParse_array(htmlspecialchars_array($settings)));
 
-        return $this->draw('general.html');
+        echo $this->draw('general.html');
+        exit();
     }
 
     public function postSaveGeneral()
@@ -107,7 +108,8 @@ class Admin extends AdminModule
 
         $this->tpl->set('settings', $this->tpl->noParse_array(htmlspecialchars_array($settings)));
 
-        return $this->draw('aplikasi.html');
+        echo $this->draw('aplikasi.html');
+        exit();
     }
 
     public function postSaveAplikasi()
@@ -296,7 +298,8 @@ class Admin extends AdminModule
         $settings['update_version'] = $this->options->get('settings.update_version');
         $this->tpl->set('settings', $settings);
         $this->tpl->set('manual_mode', isset_or($manual_mode, false));
-        return $this->draw('update.html');
+        echo $this->draw('update.html');
+        exit();
     }
 
     private function updateRequest()

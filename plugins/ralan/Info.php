@@ -5,7 +5,7 @@ return [
     'author'        =>  'Basoro',
     'version'       =>  '1.2',
     'compatibility' =>  '2020',
-    'icon'          =>  'wheelchair',
+    'icon'          =>  'wheelchair-accessibility',
     'install'       =>  function () use ($core) {
         $core->db()->pdo()->exec("INSERT INTO `lite_options` (`module`, `field`, `value`) VALUES ('ralan', 'tab_resep', '0')");
         $core->db()->pdo()->exec("INSERT INTO `lite_options` (`module`, `field`, `value`) VALUES ('ralan', 'tab_laboratorium', '0')");

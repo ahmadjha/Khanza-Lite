@@ -5,5 +5,5 @@ return [
     'author'        =>  'Basoro',
     'version'       =>  '1.0',
     'compatibility' =>  '2020',
-    'icon'          =>  'shopping-cart',
+    'icon'          =>  'cart',
 ];

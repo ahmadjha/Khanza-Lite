@@ -6,7 +6,7 @@ return [
     'author'        =>  'Basoro',
     'version'       =>  '1.0',
     'compatibility' =>  '2020',
-    'icon'          =>  'user-md',
+    'icon'          =>  'account',
 
     'install'       =>  function () use ($core) {
         $core->db()->pdo()->exec("CREATE TABLE IF NOT EXISTS `lite_roles` (

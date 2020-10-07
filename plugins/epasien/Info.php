@@ -5,7 +5,7 @@ return [
     'author'        =>  'Basoro',
     'version'       =>  '1.0',
     'compatibility' =>  '2020',
-    'icon'          =>  'heartbeat',
+    'icon'          =>  'account-key',
     'pages'         =>  ['e-Pasien' => 'pasien'],
     'install'       =>  function () use ($core) {
         $core->db()->pdo()->exec("INSERT INTO `lite_options` (`module`, `field`, `value`) VALUES ('epasien', 'smtp_host', 'ssl://smtp.gmail.com')");

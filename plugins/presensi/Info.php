@@ -5,5 +5,5 @@ return [
     'author'        =>  'Basoro.ID',
     'version'       =>  '1.2',
     'compatibility' =>  '2020',
-    'icon'          =>  'user-o'
+    'icon'          =>  'camera-front-variant'
 ];

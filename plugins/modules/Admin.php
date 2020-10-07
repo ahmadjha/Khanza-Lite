@@ -20,7 +20,8 @@ class Admin extends AdminModule
     public function getManage($type = 'active')
     {
         $modules = $this->_modulesList($type);
-        return $this->draw('manage.html', ['modules' => array_chunk($modules, 2), 'tab' => $type]);
+        echo $this->draw('manage.html', ['modules' => array_chunk($modules, 2), 'tab' => $type]);
+        exit();
     }
 
     /**
@@ -28,7 +29,8 @@ class Admin extends AdminModule
     */
     public function getUpload()
     {
-        return $this->draw('upload.html');
+        echo $this->draw('upload.html');
+        exit();
     }
 
     /**

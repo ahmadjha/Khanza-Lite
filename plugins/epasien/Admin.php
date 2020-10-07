@@ -16,7 +16,8 @@ class Admin extends AdminModule
 
     public function getIndex()
     {
-        return $this->draw('index.html');
+        echo $this->draw('index.html');
+        exit();
     }
 
     public function getSettings()
@@ -33,7 +34,8 @@ class Admin extends AdminModule
         $this->assign['perusahaan_pasien'] = $this->db('perusahaan_pasien')->toArray();
 
         $this->assign['epasien'] = htmlspecialchars_array($this->options('epasien'));
-        return $this->draw('settings.html', ['settings' => $this->assign]);
+        echo $this->draw('settings.html', ['settings' => $this->assign]);
+        exit();
     }
 
     public function postSaveSettings()
