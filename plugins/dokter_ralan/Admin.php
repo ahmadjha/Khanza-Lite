@@ -85,7 +85,8 @@ class Admin extends AdminModule
 
       $this->assign['searchUrl'] =  url([ADMIN, 'dokter_ralan', 'manage', $page.'?s='.$phrase.'&start_date='.$start_date.'&end_date='.$end_date]);
 
-      return $this->draw('manage.html', ['dokter_ralan' => $this->assign]);
+      echo $this->draw('manage.html', ['dokter_ralan' => $this->assign]);
+      exit();
 
     }
 
@@ -94,7 +95,8 @@ class Admin extends AdminModule
       $this->_addTelemedicineFiles();
       $this->assign['list'] = [];
 
-      return $this->draw('telemedicine.html', ['dokter_ralan' => $this->assign]);
+      echo $this->draw('telemedicine.html', ['dokter_ralan' => $this->assign]);
+      exit();
     }
     public function getView($id, $page = 1)
     {
@@ -237,7 +239,8 @@ class Admin extends AdminModule
                 $this->assign['riwayat'][] = $row;
             }
 
-            return $this->draw('view.html', ['dokter_ralan' => $this->assign]);
+            echo $this->draw('view.html', ['dokter_ralan' => $this->assign]);
+            exit();
         } else {
             redirect(url([ADMIN, 'dokter_ralan', 'manage']));
         }
